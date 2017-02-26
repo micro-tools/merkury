@@ -13,21 +13,12 @@
 - super simple `.on() and .emit() EventEmitter API`
 - _lightweight_ and **fast**
 
-## use-case?
-- imagine a world full of microservices
-- imagine you need high availabilty
-- the first thing you will do is scale your microservices to multiple 
-instances or containers
-- imagine your instances run behind a load-balancer
-- your service/code will now only receive requests on single instances
-but you might need to do something with the received information on
-every instance - you have to notify all your instances about the updated
-information
-- you could implement some sort of polling..but what if you could simply
-notify the other instances? and _what if that was just as easy as emitting
-a simple event_
+```shell
+    npm install --save merkury
+```
 
 ## how does it help?
+- (if got more time -> check "use case?" below)
 - before you implement some sort of database polling, check out merkury
 - just setup an instance of mercury in each service instance with the same
 topic name and redis configuration
@@ -64,3 +55,17 @@ single one will receive the update
     //subscribe to error events
     mk.on("error", err => { .. });
 ```
+
+## use-case?
+- imagine a world full of microservices
+- imagine you need high availabilty
+- the first thing you will do is scale your microservices to multiple 
+instances or containers
+- imagine your instances run behind a load-balancer
+- your service/code will now only receive requests on single instances
+but you might need to do something with the received information on
+every instance - you have to notify all your instances about the updated
+information
+- you could implement some sort of polling..but what if you could simply
+notify the other instances? and _what if that was just as easy as emitting
+a simple event_
