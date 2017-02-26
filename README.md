@@ -56,6 +56,29 @@ single one will receive the update
     mk.on("error", err => { .. });
 ```
 
+## event race-lock mode
+```javascript
+
+    mk1.on("my-event", arg1 => { console.write(arg1) });
+    mk2.on("my-event", arg1 => { console.write(arg1) });
+    mk3.on("my-event", arg1 => { console.write(arg1) });
+
+    mk1.on("my-race-event", arg1 => { console.write(arg1) }, true);
+    mk2.on("my-race-event", arg1 => { console.write(arg1) }, true);
+    mk3.on("my-race-event", arg1 => { console.write(arg1) }, true);
+    
+    //with race mode disabled (usually)
+    mk1.emit("my-event", 1); //output: 1\n1\n1\n
+    
+    //with race mode enabled
+    mk1.emit("my-race-event", 1, 2, 3); //output: 1\n
+    
+    //race mode uses "redlock" algorithm to ensure only a single
+    //Merkury{} instance will call its EventListener
+    //merkury takes track of its race enabled events and is able
+    //to remove them permanently when using e.g. mk1.removeListener(..)
+```
+
 ## use-case?
 - imagine a world full of microservices
 - imagine you need high availabilty
