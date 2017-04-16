@@ -2,7 +2,7 @@
 
 # merkury
 
-[![node](https://img.shields.io/node/v/gh-badges.svg)]()
+[![Build Status](https://travis-ci.org/krystianity/merkury.svg?branch=master)](https://travis-ci.org/krystianity/merkury)
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg)]()
 [![5cf](https://img.shields.io/badge/5cf-approved-ff69b4.svg)]()
 
