@@ -39,6 +39,9 @@ describe("Merkury Integration", function() {
         const m2 = new Merkury(topic, redisConfig);
         const m3 = new Merkury(topic, redisConfig);
 
+        m2.on("error", console.log);
+        m3.on("error", console.log);
+
         Promise.all([m2.connect(), m3.connect()]).then(_ => {
 
             let hitCount = 0;
@@ -67,7 +70,7 @@ describe("Merkury Integration", function() {
             setTimeout(() => {
                 expect(hitCount).to.be.equal(5);
                 done();
-            }, 5)
+            }, 15)
         });
     });
 
